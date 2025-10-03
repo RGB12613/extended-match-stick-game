@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>対戦ゲーム</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <div id="setup-screen" class="screen-container">
+        <h1>ゲーム設定</h1>
+        <div class="setup-form">
+            <div class="form-group">
+                <label for="h-input">スコアボードの数 (h):</label>
+                <input type="number" id="h-input" value="2" min="1" max="10">
+            </div>
+            <div class="form-group">
+                <label for="fa-input">プレイヤーAのf値 (カンマ区切り):</label>
+                <input type="text" id="fa-input" value="2,2">
+            </div>
+            <div class="form-group">
+                <label for="fb-input">プレイヤーBのf値 (カンマ区切り):</label>
+                <input type="text" id="fb-input" value="2,2">
+            </div>
+            <div class="form-group">
+                <label>プレイヤーBのタイプ:</label>
+                <div class="radio-group">
+                    <input type="radio" id="player-type-human" name="player-b-type" value="human" checked>
+                    <label for="player-type-human">人間</label>
+                    <input type="radio" id="player-type-bot" name="player-b-type" value="bot">
+                    <label for="player-type-bot">🤖 BOT (ランダム)</label>
+                </div>
+            </div>
+            <p id="setup-error" class="error-message"></p>
+            <button id="start-btn" class="btn">ゲーム開始</button>
+        </div>
+    </div>
+
+    <div id="game-screen" class="hidden">
+        <h1>対戦ゲーム</h1>
+        <div id="game-info">
+            <p>現在のターン: <span id="current-turn">プレイヤーA</span></p>
+        </div>
+        <div class="game-container">
+            <div id="player-a" class="player-area">
+                <h2>プレイヤーA</h2>
+                <div id="board-a" class="board"></div>
+            </div>
+            <div id="player-b" class="player-area">
+                <h2>プレイヤーB (🤖)</h2>
+                <div id="board-b" class="board"></div>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="redistribute-btn">1) 再分配</button>
+            <button id="attack-btn">2) 攻撃</button>
+        </div>
+    </div>
+
+    <div id="end-screen" class="screen-container hidden">
+        <h2>ゲーム終了</h2>
+        <div id="result-display"></div>
+        <div class="end-controls">
+            <button id="rematch-btn" class="btn">再度プレイする</button>
+            <button id="menu-btn" class="btn">メニューに戻る</button>
+        </div>
+    </div>
+    <script src="./GameLogic.js"></script>
+    <script src="./game.js"></script>
+</body>
+
+</html>
