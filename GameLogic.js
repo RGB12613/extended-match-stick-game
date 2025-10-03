@@ -47,7 +47,7 @@ class GameLogic {
 
         return canRedistribute || canAttack;
     }
-    
+
     /**
      * 行動を実行し、ゲーム状態を更新する
      * @param {object} action - 実行する行動の詳細
@@ -71,7 +71,7 @@ class GameLogic {
                 this.scores_a[targetIdx] += this.scores_b[attackerIdx];
             }
         }
-        
+
         // 2. 剰余を計算
         this._applyModulo();
 
@@ -82,7 +82,7 @@ class GameLogic {
         if (!this.isGameOver) {
             this._switchTurn();
         }
-        
+
         return this.getState();
     }
 
@@ -101,14 +101,14 @@ class GameLogic {
         const currentPlayerKey = this.isPlayerATurn ? 'a' : 'b';
         const opponentKey = this.isPlayerATurn ? 'b' : 'a';
 
-        if (!this.canPlayerMove(currentPlayerKey)) {
-            this.isGameOver = true;
-            this.winner = this.isPlayerATurn ? 'B' : 'A';
-            this.winReason = "自滅しました。";
-        } else if (!this.canPlayerMove(opponentKey)) {
+        if (!this.canPlayerMove(opponentKey)) {
             this.isGameOver = true;
             this.winner = this.isPlayerATurn ? 'A' : 'B';
             this.winReason = "相手が行動不能になりました。";
+        } else if (!this.canPlayerMove(currentPlayerKey)) {
+            this.isGameOver = true;
+            this.winner = this.isPlayerATurn ? 'B' : 'A';
+            this.winReason = "自滅しました。";
         }
     }
 }
